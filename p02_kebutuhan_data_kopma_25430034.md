@@ -16,6 +16,8 @@ Jadi organisasi ini tuh bergerak di bidang koperasi kampus yang melayani aktifit
 Dokumen yang dianalisis adalah nota penjualan kopma. Dari nota tersebut bisa diketahui bebrapa data penting seperti nomer nota, tanggal dan waktu transaksi, kasir, anggota, barang, jumlah barang, harga saat transaksi, dan jumlah pembayaran. Selain nota penjualan, data pemasok dan barang juga bisa diperoleh dari daftar barang, faktur pemasok, dan hasil wawancara dengan petugas. Beberapa data seperti subtotal dan total merupakan nilai yang bisa dihitung dari data lain. Jadi tidak semua angka yang ada di nota harus menjadi data yang berdiri sendiri.
 
 ## 4. Entitas kandidat dan elemen data
+
+## Bifor Modifikasi
 | Entitas kandidat | Elemen data utama | Sumber |
 |---|---|---|
 | Anggota | nomor anggota, NIM, nama, program studi, nomor HP, status aktif, poin royalitas | Formulir pendaftaran |
@@ -25,6 +27,43 @@ Dokumen yang dianalisis adalah nota penjualan kopma. Dari nota tersebut bisa dik
 | Petugas | kode petugas, nama, peran (kasir/gudang/ketua) | Wawancara |
 | Pemasok | kode, nama, telepon, alamat | Faktur pemasok |
 | Pembelian dan detailnya | nomor faktur, tanggal, pemasok, barang, qty, harga beli | faktur pemasok |
+
+### Hasil D.1 — Penandaan kunci dan atribut turunan
+| Entitas kandidat | Elemen data utama | Status |
+|---|---|---|
+| anggota | **id_anggota (PK)**, no_anggota (AK), npm_anggota (AK), nama_anggota, prodi_anggota, no_wa_anggota, status_anggota, poin_loyalitas | no_anggota dan npm_anggota merupakan kunci alternatif karena keduanya unik. |
+| barang | **id_barang (PK)**, kode_barang (AK), nama_barang, kategori_barang, harga_jual_barang, stok_barang, stok_min_barang | kode_barang merupakan kunci alternatif. |
+| penjualan | **id_penjualan (PK)**, no_nota_penjualan (AK), tgl_penjualan, id_petugas (FK), id_anggota (FK, opsional), bayar_penjualan | no_nota_penjualan merupakan kunci alternatif. total merupakan atribut turunan. |
+| detail_penjualan | **id_penjualan (PK, FK)**, **id_barang (PK, FK)**, qty_detail_penjualan, harga_satuan_detail_penjualan | PK komposit terdiri dari id_penjualan dan id_barang. subtotal merupakan atribut turunan. |
+
+**Keterangan:**
+- PK = Primary Key / kunci primer.
+- AK = Alternate Key / kunci alternatif.
+- FK = Foreign Key / kunci tamu.
+- `subtotal` diturunkan dari `qty × harga_satuan`.
+- `total` diturunkan dari penjumlahan subtotal dalam satu nota.
+- `poin_loyalitas` berkaitan dengan anggota dan akan dibahas lebih lanjut pada latihan Modul 3 untuk menentukan apakah cukup sebagai atribut anggota atau membutuhkan entitas riwayat poin.
+
+### Pemecahan entitas pembelian
+
+Sesuai langkah D.1, entitas kandidat **“Pembelian dan detailnya”** dipecah menjadi dua entitas:
+
+| Entitas | Atribut utama | Status |
+|---|---|---|
+| pembelian | **id_pembelian (PK)**, no_faktur_pembelian (AK), tgl_pembelian, id_pemasok (FK), status_pembelian | no_faktur_pembelian merupakan kunci alternatif. |
+| detail_pembelian | **id_pembelian (PK, FK)**, **id_barang (PK, FK)**, qty_detail_pembelian, harga_beli_detail_pembelian | PK komposit terdiri dari id_pembelian dan id_barang. |
+
+### Entitas yang digunakan setelah D.1
+
+Hasil identifikasi D.1 menjadi:
+1. `anggota`
+2. `barang`
+3. `petugas`
+4. `penjualan`
+5. `detail_penjualan`
+6. `pemasok`
+7. `pembelian`
+8. `detail_pembelian`
 
 ## 5. Aturan bisnis
 | Kode | Aturan bisnis |
