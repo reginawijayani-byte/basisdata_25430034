@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS klinik_sehat_raw;
-USE klinik_sehat_raw;
+CREATE DATABASE IF NOT EXISTS klinik_sehat_raw_uji;
+USE klinik_sehat_raw_uji;
 
 -- ----------------------------------------------------------------uw--
 -- 1. TABEL PASIEN

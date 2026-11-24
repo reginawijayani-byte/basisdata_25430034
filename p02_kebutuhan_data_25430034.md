@@ -41,11 +41,11 @@ Dokumen sumber yang digunakan dalam proyek ini adalah formulir pendaftaran pasie
 ## 6. Kebutuhan informasi
 | Kode | Kebutuhan informasi | Data yang diperlukan |
 |---|---|---|
-| KI-01 | menampilkan riwayat pemeriksaan pasien | pasien,pemeriksaan,dokter |
-| KI-02 | menampilkan daftar pasien yang diperiksa dalam periode tertentu | pasien,pemeriksaan |
-| KI-03 | menampilkan daftar obat yang stoknya sudah menipis | obat |
-| KI-04 | menampilkan jumlah pendapatan klinik per hari atau per bulan | pemeriksaan,pembayaran |
-| KI_05 | menampilkan jumlah pemeriksaan yang ditangani setiap dokter | dokter pemeriksaan |
+| KI-01* | menampilkan riwayat pemeriksaan pasien | pasien,pemeriksaan,dokter |
+| KI-02* | menampilkan daftar pasien yang diperiksa dalam periode tertentu | pasien,pemeriksaan |
+| KI-03  | menampilkan daftar obat yang stoknya sudah menipis | obat |
+| KI-04* | menampilkan jumlah pendapatan klinik per hari atau per bulan | pemeriksaan,pembayaran |
+| KI_05* | menampilkan jumlah pemeriksaan yang ditangani setiap dokter | dokter pemeriksaan |
 
 ## 7. Matriks CRUD
 | Proses | pasien | dokter | Pemeriksaan | resep | obat | Pembayaran |
